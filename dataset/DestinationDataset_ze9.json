@@ -1,0 +1,18 @@
+{
+	"name": "DestinationDataset_ze9",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageEsiUnivConst",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "syskils"
+			}
+		},
+		"schema": {}
+	}
+}
