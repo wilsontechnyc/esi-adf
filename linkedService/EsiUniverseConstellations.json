@@ -1,0 +1,12 @@
+{
+	"name": "EsiUniverseConstellations",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://esi.evetech.net/latest/universe/constellations/?datasource=tranquility",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
