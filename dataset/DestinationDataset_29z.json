@@ -1,0 +1,19 @@
+{
+	"name": "DestinationDataset_29z",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "test",
+				"container": "test"
+			}
+		},
+		"schema": {}
+	}
+}
