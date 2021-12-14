@@ -1,0 +1,25 @@
+{
+	"name": "Trigger_29z",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyPipeline_29z",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2021-12-14T22:46:00Z",
+				"endTime": "2022-01-01T22:46:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
