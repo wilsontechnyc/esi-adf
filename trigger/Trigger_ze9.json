@@ -1,0 +1,25 @@
+{
+	"name": "Trigger_ze9",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "UnivConstKills",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2022-01-01T23:32:00Z",
+				"endTime": "2021-12-04T23:32:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
