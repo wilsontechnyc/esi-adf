@@ -1,0 +1,11 @@
+{
+	"name": "AzureBlobStorageEsiUnivConst",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://esiadf.blob.core.windows.net",
+			"accountKind": "StorageV2"
+		}
+	}
+}
