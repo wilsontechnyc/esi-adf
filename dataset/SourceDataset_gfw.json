@@ -1,0 +1,14 @@
+{
+	"name": "SourceDataset_gfw",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "UniverseSystemJumps",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"requestMethod": "GET"
+		}
+	}
+}
