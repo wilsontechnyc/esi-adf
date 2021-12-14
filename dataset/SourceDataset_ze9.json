@@ -1,0 +1,14 @@
+{
+	"name": "SourceDataset_ze9",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "EsiUniverseConstellations",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"requestMethod": "GET"
+		}
+	}
+}
