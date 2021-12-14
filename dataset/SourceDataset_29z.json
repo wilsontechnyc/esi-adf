@@ -1,0 +1,14 @@
+{
+	"name": "SourceDataset_29z",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "EsiRegionInfo",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"requestMethod": "GET"
+		}
+	}
+}
