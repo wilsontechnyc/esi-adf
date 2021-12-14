@@ -1,0 +1,25 @@
+{
+	"name": "Trigger_gfw",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "copy_sys_kills_taskname",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 10,
+				"startTime": "2021-12-14T23:09:00Z",
+				"endTime": "2022-01-01T23:09:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
