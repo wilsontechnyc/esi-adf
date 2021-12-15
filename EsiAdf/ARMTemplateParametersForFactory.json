@@ -11,14 +11,32 @@
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"value": "https://esiadf.blob.core.windows.net"
 		},
+		"AzureBlobStorageEsiUnivConst_properties_typeProperties_serviceEndpoint": {
+			"value": "https://esiadf.blob.core.windows.net"
+		},
+		"AzureBlobStorageIncursions_properties_typeProperties_serviceEndpoint": {
+			"value": "https://esiadf.blob.core.windows.net"
+		},
+		"AzureTableStorageEsiUniverseConstellations_sasUri": {
+			"value": ""
+		},
 		"EsiRegionInfo_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/regions/?datasource=tranquility"
+		},
+		"EsiUniverseConstellations_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/universe/constellations/?datasource=tranquility"
 		},
 		"SystemKillsStorage_properties_typeProperties_serviceEndpoint": {
 			"value": "https://esiadf.blob.core.windows.net"
 		},
 		"UniverseSystemJumps_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
+		},
+		"esiUnivConst_sasUri": {
+			"value": ""
+		},
+		"incursions_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/incursions/?datasource=tranquility"
 		}
 	}
 }
