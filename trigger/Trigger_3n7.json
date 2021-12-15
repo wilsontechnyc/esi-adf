@@ -1,0 +1,25 @@
+{
+	"name": "Trigger_3n7",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyPipeline_3n7SYSTEMS",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 24,
+				"startTime": "2021-12-15T21:54:00Z",
+				"endTime": "2022-01-01T21:54:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
