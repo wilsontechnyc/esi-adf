@@ -1,0 +1,25 @@
+{
+	"name": "Trigger_6fe",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "systemJumps",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 6,
+				"startTime": "2021-12-15T22:16:00Z",
+				"endTime": "2022-01-01T22:16:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
