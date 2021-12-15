@@ -1,0 +1,11 @@
+{
+	"name": "DestinationDataset_3n7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureTableStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureTable"
+	}
+}
