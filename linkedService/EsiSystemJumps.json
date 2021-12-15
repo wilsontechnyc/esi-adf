@@ -1,0 +1,12 @@
+{
+	"name": "EsiSystemJumps",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
