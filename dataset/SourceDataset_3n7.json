@@ -1,0 +1,12 @@
+{
+	"name": "SourceDataset_3n7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestService1Systeminfo",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
