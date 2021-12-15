@@ -1,0 +1,25 @@
+{
+	"name": "Trigger_jne",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Incursions_CopyPipeline_jne",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2021-12-15T01:44:00Z",
+				"endTime": "2022-01-01T01:44:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
