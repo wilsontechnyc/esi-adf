@@ -1,0 +1,15 @@
+{
+	"name": "DestinationDataset_6fe",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "EsiSystemsJumps",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "systemsJumps"
+		}
+	}
+}
