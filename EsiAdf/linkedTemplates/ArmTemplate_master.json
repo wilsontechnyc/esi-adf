@@ -7,10 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "EsiAdf"
 		},
-		"AzureTableStorage1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureTableStorage1'"
-		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
 			"defaultValue": "https://esiadf.blob.core.windows.net"
@@ -23,6 +19,10 @@
 			"type": "string",
 			"defaultValue": "https://esiadf.blob.core.windows.net"
 		},
+		"AzureTableStorage1_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'AzureTableStorage1'"
+		},
 		"AzureTableStorageEsiUniverseConstellations_sasUri": {
 			"type": "secureString",
 			"metadata": "Secure string for 'sasUri' of 'AzureTableStorageEsiUniverseConstellations'"
@@ -34,6 +34,10 @@
 		"EsiUniverseConstellations_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/constellations/?datasource=tranquility"
+		},
+		"RestService1Systeminfo_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/universe/systems/?datasource=tranquility"
 		},
 		"SystemKillsStorage_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
@@ -78,9 +82,6 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureTableStorage1_connectionString": {
-						"value": "[parameters('AzureTableStorage1_connectionString')]"
-					},
 					"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_serviceEndpoint')]"
 					},
@@ -90,6 +91,9 @@
 					"AzureBlobStorageIncursions_properties_typeProperties_serviceEndpoint": {
 						"value": "[parameters('AzureBlobStorageIncursions_properties_typeProperties_serviceEndpoint')]"
 					},
+					"AzureTableStorage1_sasUri": {
+						"value": "[parameters('AzureTableStorage1_sasUri')]"
+					},
 					"AzureTableStorageEsiUniverseConstellations_sasUri": {
 						"value": "[parameters('AzureTableStorageEsiUniverseConstellations_sasUri')]"
 					},
@@ -98,6 +102,9 @@
 					},
 					"EsiUniverseConstellations_properties_typeProperties_url": {
 						"value": "[parameters('EsiUniverseConstellations_properties_typeProperties_url')]"
+					},
+					"RestService1Systeminfo_properties_typeProperties_url": {
+						"value": "[parameters('RestService1Systeminfo_properties_typeProperties_url')]"
 					},
 					"SystemKillsStorage_properties_typeProperties_serviceEndpoint": {
 						"value": "[parameters('SystemKillsStorage_properties_typeProperties_serviceEndpoint')]"
