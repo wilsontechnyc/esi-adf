@@ -8,7 +8,7 @@
 		"annotations": [],
 		"type": "AzureTable",
 		"typeProperties": {
-			"tableName": "tablehereduringpublication"
+			"tableName": "systemsTable"
 		}
 	}
 }
