@@ -1,0 +1,12 @@
+{
+	"name": "SourceDataset_6fe",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "EsiSystemJumps",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
