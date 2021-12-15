@@ -1,0 +1,14 @@
+{
+	"name": "SourceDataset_jne",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "incursions",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"requestMethod": "GET"
+		}
+	}
+}
