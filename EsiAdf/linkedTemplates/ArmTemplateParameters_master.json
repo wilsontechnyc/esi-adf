@@ -23,6 +23,12 @@
 		"EsiRegionInfo_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/regions/?datasource=tranquility"
 		},
+		"EsiSystemJumps_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
+		},
+		"EsiSystemsJumps_sasUri": {
+			"value": ""
+		},
 		"EsiUniverseConstellations_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/constellations/?datasource=tranquility"
 		},

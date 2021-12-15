@@ -31,6 +31,14 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/regions/?datasource=tranquility"
 		},
+		"EsiSystemJumps_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
+		},
+		"EsiSystemsJumps_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'EsiSystemsJumps'"
+		},
 		"EsiUniverseConstellations_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/constellations/?datasource=tranquility"
@@ -99,6 +107,12 @@
 					},
 					"EsiRegionInfo_properties_typeProperties_url": {
 						"value": "[parameters('EsiRegionInfo_properties_typeProperties_url')]"
+					},
+					"EsiSystemJumps_properties_typeProperties_url": {
+						"value": "[parameters('EsiSystemJumps_properties_typeProperties_url')]"
+					},
+					"EsiSystemsJumps_sasUri": {
+						"value": "[parameters('EsiSystemsJumps_sasUri')]"
 					},
 					"EsiUniverseConstellations_properties_typeProperties_url": {
 						"value": "[parameters('EsiUniverseConstellations_properties_typeProperties_url')]"
