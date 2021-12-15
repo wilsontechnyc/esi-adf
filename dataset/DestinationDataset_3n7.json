@@ -6,6 +6,9 @@
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "AzureTable"
+		"type": "AzureTable",
+		"typeProperties": {
+			"tableName": "tablehereduringpublication"
+		}
 	}
 }
