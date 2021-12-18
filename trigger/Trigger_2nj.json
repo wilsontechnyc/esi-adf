@@ -1,0 +1,25 @@
+{
+	"name": "Trigger_2nj",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyPipeline_universebloodline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 24,
+				"startTime": "2021-12-18T00:36:00Z",
+				"endTime": "2022-01-01T00:36:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
