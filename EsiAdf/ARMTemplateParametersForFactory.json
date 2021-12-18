@@ -38,6 +38,12 @@
 		"SystemKillsStorage_properties_typeProperties_serviceEndpoint": {
 			"value": "https://esiadf.blob.core.windows.net"
 		},
+		"TableUniverseBloodline_sasUri": {
+			"value": ""
+		},
+		"UniverseBloodlines_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/universe/bloodlines/?datasource=tranquility&language=en"
+		},
 		"UniverseSystemJumps_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
 		},

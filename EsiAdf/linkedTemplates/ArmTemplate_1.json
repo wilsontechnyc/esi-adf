@@ -13,6 +13,69 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_gfw')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SystemKillsStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "syskils"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_jne')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorageIncursions",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "incursions"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_ze9')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorageEsiUnivConst",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "syskils"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_29z')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -26,6 +89,22 @@
 				"typeProperties": {
 					"requestMethod": "GET"
 				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_2nj')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "UniverseBloodlines",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		},
@@ -253,6 +332,163 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/CopyPipeline_universebloodline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_2nj",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Destination",
+								"value": "Table1"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET"
+							},
+							"sink": {
+								"type": "AzureTableSink",
+								"azureTableInsertType": "merge",
+								"writeBatchSize": 10000
+							},
+							"enableStaging": false,
+							"validateDataConsistency": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['bloodline_id']"
+										},
+										"sink": {
+											"name": "bloodline_id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['charisma']"
+										},
+										"sink": {
+											"name": "charisma"
+										}
+									},
+									{
+										"source": {
+											"path": "$['corporation_id']"
+										},
+										"sink": {
+											"name": "corporation_id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['description']"
+										},
+										"sink": {
+											"name": "description"
+										}
+									},
+									{
+										"source": {
+											"path": "$['intelligence']"
+										},
+										"sink": {
+											"name": "intelligence"
+										}
+									},
+									{
+										"source": {
+											"path": "$['memory']"
+										},
+										"sink": {
+											"name": "memory"
+										}
+									},
+									{
+										"source": {
+											"path": "$['name']"
+										},
+										"sink": {
+											"name": "name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['perception']"
+										},
+										"sink": {
+											"name": "perception"
+										}
+									},
+									{
+										"source": {
+											"path": "$['race_id']"
+										},
+										"sink": {
+											"name": "race_id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ship_type_id']"
+										},
+										"sink": {
+											"name": "ship_type_id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['willpower']"
+										},
+										"sink": {
+											"name": "willpower"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_2nj",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_2nj",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_2nj')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Incursions_CopyPipeline_jne')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -331,7 +567,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_jne')]"
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_jne')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_jne')]"
 			]
 		},
 		{
@@ -457,7 +694,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_ze9')]"
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_ze9')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_ze9')]"
 			]
 		},
 		{
@@ -525,7 +763,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_gfw')]"
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_gfw')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_gfw')]"
 			]
 		},
 		{
@@ -645,7 +884,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_3n7')]",
+			"name": "[concat(parameters('factoryName'), '/Trigger_2nj')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -654,7 +893,7 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "CopyPipeline_3n7SYSTEMS",
+							"referenceName": "CopyPipeline_universebloodline",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
@@ -665,138 +904,14 @@
 					"recurrence": {
 						"frequency": "Hour",
 						"interval": 24,
-						"startTime": "2021-12-15T21:54:00Z",
-						"endTime": "2022-01-01T21:54:00Z",
+						"startTime": "2021-12-18T00:36:00Z",
+						"endTime": "2022-01-01T00:36:00Z",
 						"timeZone": "UTC"
 					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_3n7SYSTEMS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_6fe')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "systemJumps",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 6,
-						"startTime": "2021-12-15T22:16:00Z",
-						"endTime": "2022-01-01T22:16:00Z",
-						"timeZone": "UTC"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/systemJumps')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_gfw')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "copy_sys_kills_taskname",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 10,
-						"startTime": "2021-12-14T23:09:00Z",
-						"endTime": "2022-01-01T23:09:00Z",
-						"timeZone": "UTC"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/copy_sys_kills_taskname')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_jne')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Incursions_CopyPipeline_jne",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 1,
-						"startTime": "2021-12-15T01:44:00Z",
-						"endTime": "2022-01-01T01:44:00Z",
-						"timeZone": "UTC"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Incursions_CopyPipeline_jne')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_ze9')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "UnivConstKills",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 1,
-						"startTime": "2022-01-01T23:32:00Z",
-						"endTime": "2022-01-01T23:32:00Z",
-						"timeZone": "UTC"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/UnivConstKills')]"
+				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_universebloodline')]"
 			]
 		}
 	]
