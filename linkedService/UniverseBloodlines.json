@@ -1,0 +1,12 @@
+{
+	"name": "UniverseBloodlines",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://esi.evetech.net/latest/universe/bloodlines/?datasource=tranquility&language=en",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
