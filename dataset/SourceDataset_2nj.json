@@ -1,0 +1,12 @@
+{
+	"name": "SourceDataset_2nj",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "UniverseBloodlines",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
