@@ -1,0 +1,15 @@
+{
+	"name": "DestinationDataset_2nj",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TableUniverseBloodline",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "Table1"
+		}
+	}
+}
