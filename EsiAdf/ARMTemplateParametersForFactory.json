@@ -14,6 +14,9 @@
 		"fwsys4CosmosDb1_connectionString": {
 			"value": ""
 		},
+		"fw7aCosmosDb1_connectionString": {
+			"value": ""
+		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"value": "https://esiadf.blob.core.windows.net"
 		},
@@ -94,6 +97,15 @@
 		},
 		"universeStructures_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
+		},
+		"fw7RestService1_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"fw7CosmosDb1_properties_typeProperties_accountEndpoint": {
+			"value": "https://fw7.documents.azure.com:443/"
+		},
+		"fw7CosmosDb1_properties_typeProperties_database": {
+			"value": "fw7conatinerid"
 		}
 	}
 }
