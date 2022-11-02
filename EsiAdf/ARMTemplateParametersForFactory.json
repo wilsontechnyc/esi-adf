@@ -52,6 +52,12 @@
 		},
 		"incursions_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/incursions/?datasource=tranquility"
+		},
+		"tgtUniverseStructures_sasUri": {
+			"value": ""
+		},
+		"universeStructures_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
 		}
 	}
 }

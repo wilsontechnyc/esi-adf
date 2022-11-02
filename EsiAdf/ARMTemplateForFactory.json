@@ -70,6 +70,14 @@
 		"incursions_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/incursions/?datasource=tranquility"
+		},
+		"tgtUniverseStructures_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'tgtUniverseStructures'"
+		},
+		"universeStructures_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
 		}
 	},
 	"variables": {
@@ -1248,6 +1256,34 @@
 				"type": "RestService",
 				"typeProperties": {
 					"url": "[parameters('incursions_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tgtUniverseStructures')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureTableStorage",
+				"typeProperties": {
+					"sasUri": "[parameters('tgtUniverseStructures_sasUri')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/universeStructures')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('universeStructures_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
 				}

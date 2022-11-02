@@ -71,6 +71,14 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/incursions/?datasource=tranquility"
 		},
+		"tgtUniverseStructures_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'tgtUniverseStructures'"
+		},
+		"universeStructures_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -145,6 +153,12 @@
 					},
 					"incursions_properties_typeProperties_url": {
 						"value": "[parameters('incursions_properties_typeProperties_url')]"
+					},
+					"tgtUniverseStructures_sasUri": {
+						"value": "[parameters('tgtUniverseStructures_sasUri')]"
+					},
+					"universeStructures_properties_typeProperties_url": {
+						"value": "[parameters('universeStructures_properties_typeProperties_url')]"
 					}
 				}
 			},
