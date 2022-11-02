@@ -36,12 +36,6 @@
 						"referenceName": "FWSYS5RestResource1",
 						"type": "DatasetReference"
 					}
-				],
-				"outputs": [
-					{
-						"referenceName": "fwsys5CosmosDbSqlApiCollection3",
-						"type": "DatasetReference"
-					}
 				]
 			}
 		],
