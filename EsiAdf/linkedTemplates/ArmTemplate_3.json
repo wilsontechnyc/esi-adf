@@ -689,6 +689,36 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/UnivConstKills')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/freqtrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "fw7pipeline1",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 30,
+						"startTime": "2022-11-02T21:42:00Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/fw7pipeline1')]"
+			]
 		}
 	]
 }
