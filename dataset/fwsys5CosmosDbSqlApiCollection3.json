@@ -1,0 +1,12 @@
+{
+	"name": "fwsys5CosmosDbSqlApiCollection3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FWsys55CosmosDb1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {}
+	}
+}
