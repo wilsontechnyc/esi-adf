@@ -238,6 +238,12 @@
 					"fwsys4CosmosDb1_connectionString": {
 						"value": "[parameters('fwsys4CosmosDb1_connectionString')]"
 					},
+					"fwsys6CosmosDb1_properties_typeProperties_accountEndpoint": {
+						"value": "[parameters('fwsys6CosmosDb1_properties_typeProperties_accountEndpoint')]"
+					},
+					"fwsys6CosmosDb1_properties_typeProperties_database": {
+						"value": "[parameters('fwsys6CosmosDb1_properties_typeProperties_database')]"
+					},
 					"fwsys6RestService1_properties_typeProperties_url": {
 						"value": "[parameters('fwsys6RestService1_properties_typeProperties_url')]"
 					},
@@ -275,12 +281,6 @@
 					},
 					"FWsys55CosmosDb1_properties_typeProperties_database": {
 						"value": "[parameters('FWsys55CosmosDb1_properties_typeProperties_database')]"
-					},
-					"fwsys6CosmosDb1_properties_typeProperties_accountEndpoint": {
-						"value": "[parameters('fwsys6CosmosDb1_properties_typeProperties_accountEndpoint')]"
-					},
-					"fwsys6CosmosDb1_properties_typeProperties_database": {
-						"value": "[parameters('fwsys6CosmosDb1_properties_typeProperties_database')]"
 					}
 				}
 			},

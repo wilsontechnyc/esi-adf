@@ -1770,16 +1770,10 @@
 				"type": "CosmosDb",
 				"typeProperties": {
 					"accountEndpoint": "[parameters('fwsys6CosmosDb1_properties_typeProperties_accountEndpoint')]",
-					"database": "[parameters('fwsys6CosmosDb1_properties_typeProperties_database')]",
-					"credential": {
-						"referenceName": "credential1",
-						"type": "CredentialReference"
-					}
+					"database": "[parameters('fwsys6CosmosDb1_properties_typeProperties_database')]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/credentials/credential1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/fwsys6RestService1')]",
