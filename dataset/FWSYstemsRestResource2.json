@@ -1,0 +1,12 @@
+{
+	"name": "FWSYstemsRestResource2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FWSystemsRestService2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
