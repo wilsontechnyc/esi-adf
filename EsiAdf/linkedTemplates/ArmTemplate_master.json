@@ -11,13 +11,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'FWSystemsCosmosDbMongoDbApi1'"
 		},
+		"FwSys5CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'FwSys5CosmosDb1'"
+		},
 		"fwsys4CosmosDb1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'fwsys4CosmosDb1'"
 		},
-		"FwSys5CosmosDb1_connectionString": {
+		"fwsys6CosmosDb1_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'FwSys5CosmosDb1'"
+			"metadata": "Secure string for 'connectionString' of 'fwsys6CosmosDb1'"
 		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
@@ -55,6 +59,30 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/constellations/?datasource=tranquility"
 		},
+		"FWSYS5RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"FWSystems3RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "collect1"
+		},
+		"FWsys4RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"FWsys55CosmosDb1_properties_typeProperties_accountEndpoint": {
+			"type": "string",
+			"defaultValue": "https://fwsys4.documents.azure.com:443/"
+		},
+		"FWsys55CosmosDb1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "fwsys4containerid"
+		},
 		"RestService1Systeminfo_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/systems/?datasource=tranquility"
@@ -79,6 +107,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'sasUri' of 'esiUnivConst'"
 		},
+		"fwsys6RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
 		"incursions_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/incursions/?datasource=tranquility"
@@ -90,22 +122,6 @@
 		"universeStructures_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
-		},
-		"FWSystems3RestService1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
-		},
-		"FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "collect1"
-		},
-		"FWsys4RestService1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
-		},
-		"FWSYS5RestService1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		},
 		"containerUri": {
 			"type": "string",
@@ -137,6 +153,9 @@
 					"FWSystemsCosmosDbMongoDbApi1_connectionString": {
 						"value": "[parameters('FWSystemsCosmosDbMongoDbApi1_connectionString')]"
 					},
+					"FwSys5CosmosDb1_connectionString": {
+						"value": "[parameters('FwSys5CosmosDb1_connectionString')]"
+					},
 					"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_serviceEndpoint')]"
 					},
@@ -164,6 +183,18 @@
 					"EsiUniverseConstellations_properties_typeProperties_url": {
 						"value": "[parameters('EsiUniverseConstellations_properties_typeProperties_url')]"
 					},
+					"FWSYS5RestService1_properties_typeProperties_url": {
+						"value": "[parameters('FWSYS5RestService1_properties_typeProperties_url')]"
+					},
+					"FWSystems3RestService1_properties_typeProperties_url": {
+						"value": "[parameters('FWSystems3RestService1_properties_typeProperties_url')]"
+					},
+					"FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database": {
+						"value": "[parameters('FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database')]"
+					},
+					"FWsys4RestService1_properties_typeProperties_url": {
+						"value": "[parameters('FWsys4RestService1_properties_typeProperties_url')]"
+					},
 					"RestService1Systeminfo_properties_typeProperties_url": {
 						"value": "[parameters('RestService1Systeminfo_properties_typeProperties_url')]"
 					},
@@ -181,21 +212,6 @@
 					},
 					"esiUnivConst_sasUri": {
 						"value": "[parameters('esiUnivConst_sasUri')]"
-					},
-					"incursions_properties_typeProperties_url": {
-						"value": "[parameters('incursions_properties_typeProperties_url')]"
-					},
-					"tgtUniverseStructures_sasUri": {
-						"value": "[parameters('tgtUniverseStructures_sasUri')]"
-					},
-					"universeStructures_properties_typeProperties_url": {
-						"value": "[parameters('universeStructures_properties_typeProperties_url')]"
-					},
-					"FWSystems3RestService1_properties_typeProperties_url": {
-						"value": "[parameters('FWSystems3RestService1_properties_typeProperties_url')]"
-					},
-					"FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database": {
-						"value": "[parameters('FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database')]"
 					}
 				}
 			},
@@ -218,14 +234,20 @@
 					"fwsys4CosmosDb1_connectionString": {
 						"value": "[parameters('fwsys4CosmosDb1_connectionString')]"
 					},
-					"FwSys5CosmosDb1_connectionString": {
-						"value": "[parameters('FwSys5CosmosDb1_connectionString')]"
+					"fwsys6CosmosDb1_connectionString": {
+						"value": "[parameters('fwsys6CosmosDb1_connectionString')]"
 					},
-					"FWsys4RestService1_properties_typeProperties_url": {
-						"value": "[parameters('FWsys4RestService1_properties_typeProperties_url')]"
+					"fwsys6RestService1_properties_typeProperties_url": {
+						"value": "[parameters('fwsys6RestService1_properties_typeProperties_url')]"
 					},
-					"FWSYS5RestService1_properties_typeProperties_url": {
-						"value": "[parameters('FWSYS5RestService1_properties_typeProperties_url')]"
+					"incursions_properties_typeProperties_url": {
+						"value": "[parameters('incursions_properties_typeProperties_url')]"
+					},
+					"tgtUniverseStructures_sasUri": {
+						"value": "[parameters('tgtUniverseStructures_sasUri')]"
+					},
+					"universeStructures_properties_typeProperties_url": {
+						"value": "[parameters('universeStructures_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -246,6 +268,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"FWsys55CosmosDb1_properties_typeProperties_accountEndpoint": {
+						"value": "[parameters('FWsys55CosmosDb1_properties_typeProperties_accountEndpoint')]"
+					},
+					"FWsys55CosmosDb1_properties_typeProperties_database": {
+						"value": "[parameters('FWsys55CosmosDb1_properties_typeProperties_database')]"
 					}
 				}
 			},
