@@ -19,10 +19,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'fwsys4CosmosDb1'"
 		},
-		"fwsys6CosmosDb1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'fwsys6CosmosDb1'"
-		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
 			"defaultValue": "https://esiadf.blob.core.windows.net"
@@ -106,6 +102,14 @@
 		"esiUnivConst_sasUri": {
 			"type": "secureString",
 			"metadata": "Secure string for 'sasUri' of 'esiUnivConst'"
+		},
+		"fwsys6CosmosDb1_properties_typeProperties_accountEndpoint": {
+			"type": "string",
+			"defaultValue": "https://fwsys6.documents.azure.com:443/"
+		},
+		"fwsys6CosmosDb1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "fwsys6databaseid"
 		},
 		"fwsys6RestService1_properties_typeProperties_url": {
 			"type": "string",
@@ -234,9 +238,6 @@
 					"fwsys4CosmosDb1_connectionString": {
 						"value": "[parameters('fwsys4CosmosDb1_connectionString')]"
 					},
-					"fwsys6CosmosDb1_connectionString": {
-						"value": "[parameters('fwsys6CosmosDb1_connectionString')]"
-					},
 					"fwsys6RestService1_properties_typeProperties_url": {
 						"value": "[parameters('fwsys6RestService1_properties_typeProperties_url')]"
 					},
@@ -274,6 +275,12 @@
 					},
 					"FWsys55CosmosDb1_properties_typeProperties_database": {
 						"value": "[parameters('FWsys55CosmosDb1_properties_typeProperties_database')]"
+					},
+					"fwsys6CosmosDb1_properties_typeProperties_accountEndpoint": {
+						"value": "[parameters('fwsys6CosmosDb1_properties_typeProperties_accountEndpoint')]"
+					},
+					"fwsys6CosmosDb1_properties_typeProperties_database": {
+						"value": "[parameters('fwsys6CosmosDb1_properties_typeProperties_database')]"
 					}
 				}
 			},
