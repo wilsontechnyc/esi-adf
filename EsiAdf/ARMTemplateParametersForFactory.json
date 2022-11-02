@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "EsiAdf"
 		},
+		"FWSystemsCosmosDbMongoDbApi1_connectionString": {
+			"value": ""
+		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"value": "https://esiadf.blob.core.windows.net"
 		},
@@ -58,6 +61,12 @@
 		},
 		"universeStructures_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
+		},
+		"FWSystems3RestService1_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database": {
+			"value": "collect1"
 		}
 	}
 }

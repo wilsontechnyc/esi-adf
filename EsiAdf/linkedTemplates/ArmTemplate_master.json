@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "EsiAdf"
 		},
+		"FWSystemsCosmosDbMongoDbApi1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'FWSystemsCosmosDbMongoDbApi1'"
+		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
 			"defaultValue": "https://esiadf.blob.core.windows.net"
@@ -79,6 +83,14 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
 		},
+		"FWSystems3RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "collect1"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -105,6 +117,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"FWSystemsCosmosDbMongoDbApi1_connectionString": {
+						"value": "[parameters('FWSystemsCosmosDbMongoDbApi1_connectionString')]"
 					},
 					"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_serviceEndpoint')]"
@@ -159,6 +174,12 @@
 					},
 					"universeStructures_properties_typeProperties_url": {
 						"value": "[parameters('universeStructures_properties_typeProperties_url')]"
+					},
+					"FWSystems3RestService1_properties_typeProperties_url": {
+						"value": "[parameters('FWSystems3RestService1_properties_typeProperties_url')]"
+					},
+					"FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database": {
+						"value": "[parameters('FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database')]"
 					}
 				}
 			},
