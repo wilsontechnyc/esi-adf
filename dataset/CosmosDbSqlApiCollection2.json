@@ -1,0 +1,37 @@
+{
+	"name": "CosmosDbSqlApiCollection2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FwSys5CosmosDb1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"contested": {
+					"type": "string"
+				},
+				"occupier_faction_id": {
+					"type": "integer"
+				},
+				"owner_faction_id": {
+					"type": "integer"
+				},
+				"solar_system_id": {
+					"type": "integer"
+				},
+				"victory_points": {
+					"type": "integer"
+				},
+				"victory_points_threshold": {
+					"type": "integer"
+				}
+			}
+		},
+		"typeProperties": {
+			"collectionName": "fwsys4containerid"
+		}
+	}
+}
