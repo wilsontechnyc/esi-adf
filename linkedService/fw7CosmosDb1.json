@@ -1,0 +1,15 @@
+{
+	"name": "fw7CosmosDb1",
+	"properties": {
+		"annotations": [],
+		"type": "CosmosDb",
+		"typeProperties": {
+			"accountEndpoint": "https://fw7.documents.azure.com:443/",
+			"database": "fw7conatinerid",
+			"credential": {
+				"referenceName": "credential1",
+				"type": "CredentialReference"
+			}
+		}
+	}
+}
