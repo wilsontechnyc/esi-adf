@@ -1,0 +1,12 @@
+{
+	"name": "FWSystemsRestService2",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
