@@ -8,6 +8,9 @@
 		"FWSystemsCosmosDbMongoDbApi1_connectionString": {
 			"value": ""
 		},
+		"fwsys4CosmosDb1_connectionString": {
+			"value": ""
+		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"value": "https://esiadf.blob.core.windows.net"
 		},
@@ -67,6 +70,9 @@
 		},
 		"FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database": {
 			"value": "collect1"
+		},
+		"FWsys4RestService1_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		}
 	}
 }

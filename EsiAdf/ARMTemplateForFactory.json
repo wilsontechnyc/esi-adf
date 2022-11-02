@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'FWSystemsCosmosDbMongoDbApi1'"
 		},
+		"fwsys4CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'fwsys4CosmosDb1'"
+		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
 			"defaultValue": "https://esiadf.blob.core.windows.net"
@@ -90,6 +94,10 @@
 		"FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "collect1"
+		},
+		"FWsys4RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		}
 	},
 	"variables": {
@@ -1648,6 +1656,133 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/FWSystemsCosmosDbMongoDbApi1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FWsys4pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "FWsys4 Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "FWsys4RestResource1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "CosmosDbSqlApiCollection1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/FWsys4RestResource1')]",
+				"[concat(variables('factoryId'), '/datasets/CosmosDbSqlApiCollection1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FWsys4RestService1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('FWsys4RestService1_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FWsys4RestResource1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FWsys4RestService1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FWsys4RestService1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/fwsys4CosmosDb1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"connectionString": "[parameters('fwsys4CosmosDb1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDbSqlApiCollection1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "fwsys4CosmosDb1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "CosmosDbSqlApiCollection",
+				"schema": {},
+				"typeProperties": {
+					"collectionName": "fwsys4containerid"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/fwsys4CosmosDb1')]"
 			]
 		}
 	]

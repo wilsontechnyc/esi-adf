@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'FWSystemsCosmosDbMongoDbApi1'"
 		},
+		"fwsys4CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'fwsys4CosmosDb1'"
+		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
 			"defaultValue": "https://esiadf.blob.core.windows.net"
@@ -90,6 +94,10 @@
 		"FWSystemsCosmosDbMongoDbApi1_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "collect1"
+		},
+		"FWsys4RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		},
 		"containerUri": {
 			"type": "string",
@@ -198,6 +206,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"fwsys4CosmosDb1_connectionString": {
+						"value": "[parameters('fwsys4CosmosDb1_connectionString')]"
+					},
+					"FWsys4RestService1_properties_typeProperties_url": {
+						"value": "[parameters('FWsys4RestService1_properties_typeProperties_url')]"
 					}
 				}
 			},
