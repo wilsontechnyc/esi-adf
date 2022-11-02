@@ -15,13 +15,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'FwSys5CosmosDb1'"
 		},
-		"fwsys4CosmosDb1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'fwsys4CosmosDb1'"
-		},
 		"fw7aCosmosDb1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'fw7aCosmosDb1'"
+		},
+		"fwsys4CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'fwsys4CosmosDb1'"
 		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
@@ -107,6 +107,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'sasUri' of 'esiUnivConst'"
 		},
+		"fw7CosmosDb1_properties_typeProperties_accountEndpoint": {
+			"type": "string",
+			"defaultValue": "https://fw7.documents.azure.com:443/"
+		},
+		"fw7CosmosDb1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "fw7conatinerid"
+		},
+		"fw7RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
 		"fwsys6CosmosDb1_properties_typeProperties_accountEndpoint": {
 			"type": "string",
 			"defaultValue": "https://fwsys6.documents.azure.com:443/"
@@ -130,18 +142,6 @@
 		"universeStructures_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
-		},
-		"fw7RestService1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
-		},
-		"fw7CosmosDb1_properties_typeProperties_accountEndpoint": {
-			"type": "string",
-			"defaultValue": "https://fw7.documents.azure.com:443/"
-		},
-		"fw7CosmosDb1_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "fw7conatinerid"
 		}
 	},
 	"variables": {
@@ -854,6 +854,67 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/fw7pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "fw7-Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "fw7RestResource1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "fw7CosmosDbSqlApiCollectionfw7",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/fw7RestResource1')]",
+				"[concat(variables('factoryId'), '/datasets/fw7CosmosDbSqlApiCollectionfw7')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/fwsys6pipeline1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1419,6 +1480,44 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/fw7CosmosDbSqlApiCollectionfw7')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "fw7aCosmosDb1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "CosmosDbSqlApiCollection",
+				"schema": {},
+				"typeProperties": {
+					"collectionName": "fw7containerid"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/fw7aCosmosDb1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/fw7RestResource1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "fw7RestService1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/fw7RestService1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/fwsys6CosmosDbSqlApiCollection3')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1765,6 +1864,54 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/fw7CosmosDb1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"accountEndpoint": "[parameters('fw7CosmosDb1_properties_typeProperties_accountEndpoint')]",
+					"database": "[parameters('fw7CosmosDb1_properties_typeProperties_database')]",
+					"credential": {
+						"referenceName": "credential1",
+						"type": "CredentialReference"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/credentials/credential1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/fw7RestService1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('fw7RestService1_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/fw7aCosmosDb1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"connectionString": "[parameters('fw7aCosmosDb1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/fwsys4CosmosDb1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -2067,165 +2214,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/credential1')]",
-			"type": "Microsoft.DataFactory/factories/credentials",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "ManagedIdentity",
-				"typeProperties": {
-					"resourceId": "/subscriptions/335fedc7-014c-4074-9477-49ad367f02ae/resourcegroups/adf-esi-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/adftostor"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/fw7pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "fw7-Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "CosmosDbSqlApiSink",
-								"writeBehavior": "insert"
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "fw7RestResource1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "fw7CosmosDbSqlApiCollectionfw7",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/fw7RestResource1')]",
-				"[concat(variables('factoryId'), '/datasets/fw7CosmosDbSqlApiCollectionfw7')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/fw7RestService1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('fw7RestService1_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/fw7RestResource1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "fw7RestService1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/fw7RestService1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/fw7CosmosDb1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDb",
-				"typeProperties": {
-					"accountEndpoint": "[parameters('fw7CosmosDb1_properties_typeProperties_accountEndpoint')]",
-					"database": "[parameters('fw7CosmosDb1_properties_typeProperties_database')]",
-					"credential": {
-						"referenceName": "credential1",
-						"type": "CredentialReference"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/credentials/credential1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/fw7aCosmosDb1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDb",
-				"typeProperties": {
-					"connectionString": "[parameters('fw7aCosmosDb1_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/fw7CosmosDbSqlApiCollectionfw7')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "fw7aCosmosDb1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "CosmosDbSqlApiCollection",
-				"schema": {},
-				"typeProperties": {
-					"collectionName": "fw7containerid"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/fw7aCosmosDb1')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/freqtrigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -2246,7 +2234,7 @@
 					"recurrence": {
 						"frequency": "Minute",
 						"interval": 30,
-						"startTime": "2022-11-02T21:42:00Z",
+						"startTime": "2022-11-02T22:29:30Z",
 						"timeZone": "UTC"
 					}
 				}
@@ -2254,6 +2242,18 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/fw7pipeline1')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/credential1')]",
+			"type": "Microsoft.DataFactory/factories/credentials",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "ManagedIdentity",
+				"typeProperties": {
+					"resourceId": "/subscriptions/335fedc7-014c-4074-9477-49ad367f02ae/resourcegroups/adf-esi-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/adftostor"
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }
