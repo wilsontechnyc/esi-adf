@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'fwsys4CosmosDb1'"
 		},
+		"FwSys5CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'FwSys5CosmosDb1'"
+		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
 			"defaultValue": "https://esiadf.blob.core.windows.net"
@@ -96,6 +100,10 @@
 			"defaultValue": "collect1"
 		},
 		"FWsys4RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"FWSYS5RestService1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		},
@@ -210,8 +218,14 @@
 					"fwsys4CosmosDb1_connectionString": {
 						"value": "[parameters('fwsys4CosmosDb1_connectionString')]"
 					},
+					"FwSys5CosmosDb1_connectionString": {
+						"value": "[parameters('FwSys5CosmosDb1_connectionString')]"
+					},
 					"FWsys4RestService1_properties_typeProperties_url": {
 						"value": "[parameters('FWsys4RestService1_properties_typeProperties_url')]"
+					},
+					"FWSYS5RestService1_properties_typeProperties_url": {
+						"value": "[parameters('FWSYS5RestService1_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -237,6 +251,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'EsiAdf_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "EsiAdf_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'EsiAdf_ArmTemplate_2')]"
 			]
 		}
 	]
