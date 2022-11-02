@@ -1,0 +1,15 @@
+{
+	"name": "fw7CosmosDbSqlApiCollectionfw7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "fw7aCosmosDb1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "fw7containerid"
+		}
+	}
+}
