@@ -5,11 +5,7 @@
 		"type": "CosmosDb",
 		"typeProperties": {
 			"accountEndpoint": "https://fwsys6.documents.azure.com:443/",
-			"database": "fwsys6databaseid",
-			"credential": {
-				"referenceName": "credential1",
-				"type": "CredentialReference"
-			}
+			"database": "fwsys6databaseid"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/linkedservices"
