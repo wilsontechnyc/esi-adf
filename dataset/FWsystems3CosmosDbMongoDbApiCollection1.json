@@ -1,0 +1,15 @@
+{
+	"name": "FWsystems3CosmosDbMongoDbApiCollection1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FWSystemsCosmosDbMongoDbApi1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbMongoDbApiCollection",
+		"schema": [],
+		"typeProperties": {
+			"collection": "collection111"
+		}
+	}
+}
