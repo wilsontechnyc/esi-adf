@@ -1,0 +1,12 @@
+{
+	"name": "UniverseSystemJumpsRestResource60",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "UniverseSystemJumpsRestService60",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
