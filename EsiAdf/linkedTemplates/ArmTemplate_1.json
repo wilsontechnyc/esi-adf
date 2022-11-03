@@ -57,7 +57,7 @@
 		},
 		"UniverseRegions_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://esi.evetech.net/latest/universe/regions/?datasource=tranquility"
+			"defaultValue": "https://esi.evetech.net/latest/incursions/?datasource=tranquility"
 		}
 	},
 	"variables": {
