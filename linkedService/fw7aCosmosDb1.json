@@ -1,12 +1,16 @@
 {
 	"name": "fw7aCosmosDb1",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "CosmosDb",
 		"typeProperties": {
-			"connectionString": "AccountEndpoint=https://fw7.documents.azure.com:443/;Database=fw7databaseid;",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDU5MTNDNEE3LTg3RjYtNDkxMS1CQUE0LUVGQ0IxMEZGMTIwM180NjhmMDU1OS1hM2NmLTRkMzctOGE4My03NjkwZGM4ODUwZmIiDQp9"
+			"accountEndpoint": "https://fw7.documents.azure.com:443/",
+			"database": "fw7databaseid",
+			"credential": {
+				"referenceName": "credential1",
+				"type": "CredentialReference"
+			}
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
