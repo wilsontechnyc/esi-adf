@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://esi.evetech.net/latest/universe/regions/?datasource=tranquility",
+			"url": "https://esi.evetech.net/latest/incursions/?datasource=tranquility",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
