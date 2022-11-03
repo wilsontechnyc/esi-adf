@@ -1,0 +1,12 @@
+{
+	"name": "UniverseRegions",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://esi.evetech.net/latest/universe/regions/?datasource=tranquility",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
