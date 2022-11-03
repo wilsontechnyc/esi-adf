@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "EsiAdf"
 		},
+		"CosmosDb1_connectionString": {
+			"value": ""
+		},
 		"FWSystemsCosmosDbMongoDbApi1_connectionString": {
 			"value": ""
 		},
@@ -17,7 +20,7 @@
 		"fwsys4CosmosDb1_connectionString": {
 			"value": ""
 		},
-		"CosmosDb1_connectionString": {
+		"UniverseSystemJumpsCosmosDb60_connectionString": {
 			"value": ""
 		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
@@ -80,6 +83,9 @@
 		"UniverseSystemJumps_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
 		},
+		"UnverseSystemKillsRestService60_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/universe/system_kills/?datasource=tranquility"
+		},
 		"esiUnivConst_sasUri": {
 			"value": ""
 		},
@@ -110,8 +116,8 @@
 		"universeStructures_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
 		},
-		"UnverseSystemKillsRestService60_properties_typeProperties_url": {
-			"value": "https://esi.evetech.net/latest/universe/system_kills/?datasource=tranquility"
+		"UniverseSystemJumpsRestService60_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
 		}
 	}
 }

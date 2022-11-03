@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "EsiAdf"
 		},
+		"CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
+		},
 		"FWSystemsCosmosDbMongoDbApi1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'FWSystemsCosmosDbMongoDbApi1'"
@@ -23,9 +27,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'fwsys4CosmosDb1'"
 		},
-		"CosmosDb1_connectionString": {
+		"UniverseSystemJumpsCosmosDb60_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
+			"metadata": "Secure string for 'connectionString' of 'UniverseSystemJumpsCosmosDb60'"
 		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
@@ -107,6 +111,10 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
 		},
+		"UnverseSystemKillsRestService60_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/universe/system_kills/?datasource=tranquility"
+		},
 		"esiUnivConst_sasUri": {
 			"type": "secureString",
 			"metadata": "Secure string for 'sasUri' of 'esiUnivConst'"
@@ -147,9 +155,9 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
 		},
-		"UnverseSystemKillsRestService60_properties_typeProperties_url": {
+		"UniverseSystemJumpsRestService60_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://esi.evetech.net/latest/universe/system_kills/?datasource=tranquility"
+			"defaultValue": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
 		}
 	},
 	"variables": {
@@ -790,6 +798,68 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SourceDataset_ze9')]",
 				"[concat(variables('factoryId'), '/datasets/DestinationDataset_ze9')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UniverseSystemKills60')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\nAlternate route: /v2/universe/system_kills/\n\nThis route is cached for up to 3600 seconds",
+				"activities": [
+					{
+						"name": "UniverseSystemKillsCopyData",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "UnverseSystemKillsRestResource60",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "UniverseSystemKillsCosmosDbSqlApiCollection60",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/UnverseSystemKillsRestResource60')]",
+				"[concat(variables('factoryId'), '/datasets/UniverseSystemKillsCosmosDbSqlApiCollection60')]"
 			]
 		},
 		{
@@ -1488,6 +1558,44 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/UniverseSystemKillsCosmosDbSqlApiCollection60')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CosmosDb1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "CosmosDbSqlApiCollection",
+				"schema": {},
+				"typeProperties": {
+					"collectionName": "UniverseSystemKills"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/CosmosDb1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UnverseSystemKillsRestResource60')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "UnverseSystemKillsRestService60",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/UnverseSystemKillsRestService60')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/fw7CosmosDbSqlApiCollectionfw7')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1627,6 +1735,19 @@
 				"type": "AzureTableStorage",
 				"typeProperties": {
 					"sasUri": "[parameters('AzureTableStorageEsiUniverseConstellations_sasUri')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CosmosDb1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"connectionString": "[parameters('CosmosDb1_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -1851,6 +1972,21 @@
 				"type": "RestService",
 				"typeProperties": {
 					"url": "[parameters('UniverseSystemJumps_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UnverseSystemKillsRestService60')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('UnverseSystemKillsRestService60_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
 				}
@@ -2222,6 +2358,36 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/UnverseSystemKillsTrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "UniverseSystemKills60",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Hour",
+						"interval": 1,
+						"startTime": "2022-11-03T00:19:00Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/UniverseSystemKills60')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/freqtrigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -2264,14 +2430,13 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UniverseSystemKills60')]",
+			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpspipeline60')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed\n\nAlternate route: /v2/universe/system_kills/\n\nThis route is cached for up to 3600 seconds",
 				"activities": [
 					{
-						"name": "UniverseSystemKillsCopyData",
+						"name": "UniverseSystemJumpsCopydata60",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -2300,14 +2465,14 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "UnverseSystemKillsRestResource60",
+								"referenceName": "UniverseSystemJumpsRestResource60",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "UniverseSystemKillsCosmosDbSqlApiCollection60",
+								"referenceName": "UniverseSystemJumpsCosmosDbSqlApiCollection60",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2321,19 +2486,19 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/UnverseSystemKillsRestResource60')]",
-				"[concat(variables('factoryId'), '/datasets/UniverseSystemKillsCosmosDbSqlApiCollection60')]"
+				"[concat(variables('factoryId'), '/datasets/UniverseSystemJumpsRestResource60')]",
+				"[concat(variables('factoryId'), '/datasets/UniverseSystemJumpsCosmosDbSqlApiCollection60')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UnverseSystemKillsRestService60')]",
+			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpsRestService60')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "RestService",
 				"typeProperties": {
-					"url": "[parameters('UnverseSystemKillsRestService60_properties_typeProperties_url')]",
+					"url": "[parameters('UniverseSystemJumpsRestService60_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
 				}
@@ -2341,12 +2506,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UnverseSystemKillsRestResource60')]",
+			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpsRestResource60')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "UnverseSystemKillsRestService60",
+					"referenceName": "UniverseSystemJumpsRestService60",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -2355,44 +2520,44 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/UnverseSystemKillsRestService60')]"
+				"[concat(variables('factoryId'), '/linkedServices/UniverseSystemJumpsRestService60')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/CosmosDb1')]",
+			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpsCosmosDb60')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "CosmosDb",
 				"typeProperties": {
-					"connectionString": "[parameters('CosmosDb1_connectionString')]"
+					"connectionString": "[parameters('UniverseSystemJumpsCosmosDb60_connectionString')]"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UniverseSystemKillsCosmosDbSqlApiCollection60')]",
+			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpsCosmosDbSqlApiCollection60')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "CosmosDb1",
+					"referenceName": "UniverseSystemJumpsCosmosDb60",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "CosmosDbSqlApiCollection",
 				"schema": {},
 				"typeProperties": {
-					"collectionName": "UniverseSystemKills"
+					"collectionName": "UniverseSystemJumps60"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/CosmosDb1')]"
+				"[concat(variables('factoryId'), '/linkedServices/UniverseSystemJumpsCosmosDb60')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UnverseSystemKillsTrigger')]",
+			"name": "[concat(parameters('factoryName'), '/freqTrig3600')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -2401,7 +2566,7 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "UniverseSystemKills60",
+							"referenceName": "UniverseSystemJumpspipeline60",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
@@ -2412,13 +2577,13 @@
 					"recurrence": {
 						"frequency": "Hour",
 						"interval": 1,
-						"startTime": "2022-11-03T00:19:00Z",
+						"startTime": "2022-11-03T02:34:00Z",
 						"timeZone": "UTC"
 					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/UniverseSystemKills60')]"
+				"[concat(variables('factoryId'), '/pipelines/UniverseSystemJumpspipeline60')]"
 			]
 		}
 	]
