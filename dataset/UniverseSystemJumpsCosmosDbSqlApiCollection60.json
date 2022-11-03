@@ -1,0 +1,15 @@
+{
+	"name": "UniverseSystemJumpsCosmosDbSqlApiCollection60",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "UniverseSystemJumpsCosmosDb60",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "UniverseSystemJumps60"
+		}
+	}
+}
