@@ -26,9 +26,7 @@
 						}
 					},
 					"sink": {
-						"type": "CosmosDbSqlApiSink",
-						"writeBehavior": "upsert",
-						"disableMetricsCollection": false
+						"type": "BinarySink"
 					},
 					"enableStaging": false
 				},
@@ -40,7 +38,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "asIsjson",
+						"referenceName": "Binary1",
 						"type": "DatasetReference"
 					}
 				]
