@@ -7,6 +7,14 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "EsiAdf"
 		},
+		"FWsys55CosmosDb1_properties_typeProperties_accountEndpoint": {
+			"type": "string",
+			"defaultValue": "https://fwsys4.documents.azure.com:443/"
+		},
+		"FWsys55CosmosDb1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "fwsys4containerid"
+		},
 		"fw7CosmosDb1_properties_typeProperties_accountEndpoint": {
 			"type": "string",
 			"defaultValue": "https://fw7.documents.azure.com:443/"
@@ -14,12 +22,38 @@
 		"fw7CosmosDb1_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "fw7conatinerid"
+		},
+		"fw7aCosmosDb1_properties_typeProperties_accountEndpoint": {
+			"type": "string",
+			"defaultValue": "https://fw7.documents.azure.com:443/"
+		},
+		"fw7aCosmosDb1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "fw7databaseid"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/FWsys55CosmosDb1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"accountEndpoint": "[parameters('FWsys55CosmosDb1_properties_typeProperties_accountEndpoint')]",
+					"database": "[parameters('FWsys55CosmosDb1_properties_typeProperties_database')]",
+					"credential": {
+						"referenceName": "credential1",
+						"type": "CredentialReference"
+					}
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/fw7CosmosDb1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -39,36 +73,36 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpsRestResource60')]",
+			"name": "[concat(parameters('factoryName'), '/fw7aCosmosDb1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"accountEndpoint": "[parameters('fw7aCosmosDb1_properties_typeProperties_accountEndpoint')]",
+					"database": "[parameters('fw7aCosmosDb1_properties_typeProperties_database')]",
+					"credential": {
+						"referenceName": "credential1",
+						"type": "CredentialReference"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RestResource1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "UniverseSystemJumpsRestService60",
+					"referenceName": "UniverseRegions",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "RestResource",
 				"typeProperties": {},
 				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpsCosmosDbSqlApiCollection60')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "UniverseSystemJumpsCosmosDb60",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "CosmosDbSqlApiCollection",
-				"schema": {},
-				"typeProperties": {
-					"collectionName": "UniverseSystemJumps60"
-				}
 			},
 			"dependsOn": []
 		},
@@ -683,6 +717,64 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpspipeline60')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "UniverseSystemJumpsCopydata60",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "UniverseSystemJumpsRestResource60",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "UniverseSystemJumpsCosmosDbSqlApiCollection60",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/UniverseSystemKills60')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -793,64 +885,6 @@
 						"outputs": [
 							{
 								"referenceName": "DestinationDataset_gfw",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/fw7pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "fw7-Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "CosmosDbSqlApiSink",
-								"writeBehavior": "insert"
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "fw7RestResource1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "fw7CosmosDbSqlApiCollectionfw7",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1007,13 +1041,53 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpspipeline60')]",
+			"name": "[concat(parameters('factoryName'), '/fw7CosmosDbSqlApiCollectionfw7')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "fw7aCosmosDb1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "CosmosDbSqlApiCollection",
+				"schema": {},
+				"typeProperties": {
+					"collectionName": "fw7containerid"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/fw7aCosmosDb1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TESTuniverseRegionsManagedIdent')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "fw7aCosmosDb1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "CosmosDbSqlApiCollection",
+				"schema": {},
+				"typeProperties": {
+					"collectionName": "UniverseRegions"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/fw7aCosmosDb1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/fw7pipeline1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "UniverseSystemJumpsCopydata60",
+						"name": "fw7-Copy data1",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -1042,14 +1116,14 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "UniverseSystemJumpsRestResource60",
+								"referenceName": "fw7RestResource1",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "UniverseSystemJumpsCosmosDbSqlApiCollection60",
+								"referenceName": "fw7CosmosDbSqlApiCollectionfw7",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1063,101 +1137,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/UniverseSystemJumpsRestResource60')]",
-				"[concat(variables('factoryId'), '/datasets/UniverseSystemJumpsCosmosDbSqlApiCollection60')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_29z')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "CopyPipeline_29z",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 1,
-						"startTime": "2021-12-14T22:46:00Z",
-						"endTime": "2022-01-01T22:46:00Z",
-						"timeZone": "UTC"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_29z')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_2nj')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "CopyPipeline_universebloodline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 24,
-						"startTime": "2021-12-18T00:36:00Z",
-						"endTime": "2022-01-01T00:36:00Z",
-						"timeZone": "UTC"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_universebloodline')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_3n7')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "CopyPipeline_3n7SYSTEMS",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 24,
-						"startTime": "2021-12-15T21:54:00Z",
-						"endTime": "2022-01-01T21:54:00Z",
-						"timeZone": "UTC"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_3n7SYSTEMS')]"
+				"[concat(variables('factoryId'), '/datasets/fw7CosmosDbSqlApiCollectionfw7')]"
 			]
 		}
 	]

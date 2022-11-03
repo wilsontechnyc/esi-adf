@@ -6,14 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "EsiAdf"
-		},
-		"FWsys55CosmosDb1_properties_typeProperties_accountEndpoint": {
-			"type": "string",
-			"defaultValue": "https://fwsys4.documents.azure.com:443/"
-		},
-		"FWsys55CosmosDb1_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "fwsys4containerid"
 		}
 	},
 	"variables": {
@@ -245,6 +237,40 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpsCosmosDbSqlApiCollection60')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "UniverseSystemJumpsCosmosDb60",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "CosmosDbSqlApiCollection",
+				"schema": {},
+				"typeProperties": {
+					"collectionName": "UniverseSystemJumps60"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UniverseSystemJumpsRestResource60')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "UniverseSystemJumpsRestService60",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/UniverseSystemKillsCosmosDbSqlApiCollection60')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -275,24 +301,6 @@
 				"type": "RestResource",
 				"typeProperties": {},
 				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/fw7CosmosDbSqlApiCollectionfw7')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "fw7aCosmosDb1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "CosmosDbSqlApiCollection",
-				"schema": {},
-				"typeProperties": {
-					"collectionName": "fw7containerid"
-				}
 			},
 			"dependsOn": []
 		},
@@ -343,24 +351,6 @@
 				"type": "RestResource",
 				"typeProperties": {},
 				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FWsys55CosmosDb1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDb",
-				"typeProperties": {
-					"accountEndpoint": "[parameters('FWsys55CosmosDb1_properties_typeProperties_accountEndpoint')]",
-					"database": "[parameters('FWsys55CosmosDb1_properties_typeProperties_database')]",
-					"credential": {
-						"referenceName": "credential1",
-						"type": "CredentialReference"
-					}
-				}
 			},
 			"dependsOn": []
 		}

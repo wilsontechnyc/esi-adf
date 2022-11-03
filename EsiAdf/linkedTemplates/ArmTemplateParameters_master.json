@@ -14,13 +14,10 @@
 		"FwSys5CosmosDb1_connectionString": {
 			"value": ""
 		},
-		"fw7aCosmosDb1_connectionString": {
+		"UniverseSystemJumpsCosmosDb60_connectionString": {
 			"value": ""
 		},
 		"fwsys4CosmosDb1_connectionString": {
-			"value": ""
-		},
-		"UniverseSystemJumpsCosmosDb60_connectionString": {
 			"value": ""
 		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
@@ -83,6 +80,9 @@
 		"UniverseSystemJumps_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
 		},
+		"UniverseSystemJumpsRestService60_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
+		},
 		"UnverseSystemKillsRestService60_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/system_kills/?datasource=tranquility"
 		},
@@ -97,6 +97,12 @@
 		},
 		"fw7RestService1_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"fw7aCosmosDb1_properties_typeProperties_accountEndpoint": {
+			"value": "https://fw7.documents.azure.com:443/"
+		},
+		"fw7aCosmosDb1_properties_typeProperties_database": {
+			"value": "fw7databaseid"
 		},
 		"fwsys6CosmosDb1_properties_typeProperties_accountEndpoint": {
 			"value": "https://fwsys6.documents.azure.com:443/"
@@ -116,8 +122,8 @@
 		"universeStructures_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
 		},
-		"UniverseSystemJumpsRestService60_properties_typeProperties_url": {
-			"value": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
+		"UniverseRegions_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/universe/regions/?datasource=tranquility"
 		},
 		"containerUri": {
 			"value": ""

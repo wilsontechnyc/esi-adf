@@ -19,17 +19,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'FwSys5CosmosDb1'"
 		},
-		"fw7aCosmosDb1_connectionString": {
+		"UniverseSystemJumpsCosmosDb60_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'fw7aCosmosDb1'"
+			"metadata": "Secure string for 'connectionString' of 'UniverseSystemJumpsCosmosDb60'"
 		},
 		"fwsys4CosmosDb1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'fwsys4CosmosDb1'"
-		},
-		"UniverseSystemJumpsCosmosDb60_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'UniverseSystemJumpsCosmosDb60'"
 		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
@@ -111,6 +107,10 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
 		},
+		"UniverseSystemJumpsRestService60_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
+		},
 		"UnverseSystemKillsRestService60_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/system_kills/?datasource=tranquility"
@@ -130,6 +130,14 @@
 		"fw7RestService1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"fw7aCosmosDb1_properties_typeProperties_accountEndpoint": {
+			"type": "string",
+			"defaultValue": "https://fw7.documents.azure.com:443/"
+		},
+		"fw7aCosmosDb1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "fw7databaseid"
 		},
 		"fwsys6CosmosDb1_properties_typeProperties_accountEndpoint": {
 			"type": "string",
@@ -155,9 +163,9 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
 		},
-		"UniverseSystemJumpsRestService60_properties_typeProperties_url": {
+		"UniverseRegions_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
+			"defaultValue": "https://esi.evetech.net/latest/universe/regions/?datasource=tranquility"
 		},
 		"containerUri": {
 			"type": "string",
@@ -267,14 +275,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"fw7aCosmosDb1_connectionString": {
-						"value": "[parameters('fw7aCosmosDb1_connectionString')]"
+					"UniverseSystemJumpsCosmosDb60_connectionString": {
+						"value": "[parameters('UniverseSystemJumpsCosmosDb60_connectionString')]"
 					},
 					"fwsys4CosmosDb1_connectionString": {
 						"value": "[parameters('fwsys4CosmosDb1_connectionString')]"
 					},
-					"UniverseSystemJumpsCosmosDb60_connectionString": {
-						"value": "[parameters('UniverseSystemJumpsCosmosDb60_connectionString')]"
+					"UniverseSystemJumpsRestService60_properties_typeProperties_url": {
+						"value": "[parameters('UniverseSystemJumpsRestService60_properties_typeProperties_url')]"
 					},
 					"UnverseSystemKillsRestService60_properties_typeProperties_url": {
 						"value": "[parameters('UnverseSystemKillsRestService60_properties_typeProperties_url')]"
@@ -303,8 +311,8 @@
 					"universeStructures_properties_typeProperties_url": {
 						"value": "[parameters('universeStructures_properties_typeProperties_url')]"
 					},
-					"UniverseSystemJumpsRestService60_properties_typeProperties_url": {
-						"value": "[parameters('UniverseSystemJumpsRestService60_properties_typeProperties_url')]"
+					"UniverseRegions_properties_typeProperties_url": {
+						"value": "[parameters('UniverseRegions_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -325,12 +333,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"FWsys55CosmosDb1_properties_typeProperties_accountEndpoint": {
-						"value": "[parameters('FWsys55CosmosDb1_properties_typeProperties_accountEndpoint')]"
-					},
-					"FWsys55CosmosDb1_properties_typeProperties_database": {
-						"value": "[parameters('FWsys55CosmosDb1_properties_typeProperties_database')]"
 					}
 				}
 			},
@@ -352,11 +354,23 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"FWsys55CosmosDb1_properties_typeProperties_accountEndpoint": {
+						"value": "[parameters('FWsys55CosmosDb1_properties_typeProperties_accountEndpoint')]"
+					},
+					"FWsys55CosmosDb1_properties_typeProperties_database": {
+						"value": "[parameters('FWsys55CosmosDb1_properties_typeProperties_database')]"
+					},
 					"fw7CosmosDb1_properties_typeProperties_accountEndpoint": {
 						"value": "[parameters('fw7CosmosDb1_properties_typeProperties_accountEndpoint')]"
 					},
 					"fw7CosmosDb1_properties_typeProperties_database": {
 						"value": "[parameters('fw7CosmosDb1_properties_typeProperties_database')]"
+					},
+					"fw7aCosmosDb1_properties_typeProperties_accountEndpoint": {
+						"value": "[parameters('fw7aCosmosDb1_properties_typeProperties_accountEndpoint')]"
+					},
+					"fw7aCosmosDb1_properties_typeProperties_database": {
+						"value": "[parameters('fw7aCosmosDb1_properties_typeProperties_database')]"
 					}
 				}
 			},
