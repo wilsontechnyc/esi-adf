@@ -1,0 +1,15 @@
+{
+	"name": "asIsjson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "asISjson",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "fwSystems"
+		}
+	}
+}
