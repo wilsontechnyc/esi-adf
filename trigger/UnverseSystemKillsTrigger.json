@@ -1,0 +1,24 @@
+{
+	"name": "UnverseSystemKillsTrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "UniverseSystemKills60",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2022-11-03T00:19:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
