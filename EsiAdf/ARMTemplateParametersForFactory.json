@@ -8,6 +8,12 @@
 		"CosmosDb1_connectionString": {
 			"value": ""
 		},
+		"CosmosDb2_connectionString": {
+			"value": ""
+		},
+		"CosmosDb3_connectionString": {
+			"value": ""
+		},
 		"FWSystemsCosmosDbMongoDbApi1_connectionString": {
 			"value": ""
 		},
@@ -17,7 +23,13 @@
 		"UniverseSystemJumpsCosmosDb60_connectionString": {
 			"value": ""
 		},
+		"asISjson_connectionString": {
+			"value": ""
+		},
 		"fwsys4CosmosDb1_connectionString": {
+			"value": ""
+		},
+		"CosmosDb4_connectionString": {
 			"value": ""
 		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
@@ -50,6 +62,9 @@
 		"FWSYS5RestService1_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		},
+		"FWSystems_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
 		"FWSystems3RestService1_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		},
@@ -65,6 +80,12 @@
 		"FWsys55CosmosDb1_properties_typeProperties_database": {
 			"value": "fwsys4containerid"
 		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
 		"RestService1Systeminfo_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/systems/?datasource=tranquility"
 		},
@@ -76,6 +97,9 @@
 		},
 		"UniverseBloodlines_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/bloodlines/?datasource=tranquility&language=en"
+		},
+		"UniverseRegions_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/incursions/?datasource=tranquility"
 		},
 		"UniverseSystemJumps_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/system_jumps/?datasource=tranquility"
@@ -122,8 +146,8 @@
 		"universeStructures_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
 		},
-		"UniverseRegions_properties_typeProperties_url": {
-			"value": "https://esi.evetech.net/latest/incursions/?datasource=tranquility"
+		"HttpServer2_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		}
 	}
 }

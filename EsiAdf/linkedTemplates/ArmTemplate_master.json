@@ -11,6 +11,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
 		},
+		"CosmosDb2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDb2'"
+		},
+		"CosmosDb3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDb3'"
+		},
 		"FWSystemsCosmosDbMongoDbApi1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'FWSystemsCosmosDbMongoDbApi1'"
@@ -23,9 +31,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'UniverseSystemJumpsCosmosDb60'"
 		},
+		"asISjson_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'asISjson'"
+		},
 		"fwsys4CosmosDb1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'fwsys4CosmosDb1'"
+		},
+		"CosmosDb4_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDb4'"
 		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
@@ -67,6 +83,10 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		},
+		"FWSystems_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
 		"FWSystems3RestService1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
@@ -87,6 +107,14 @@
 			"type": "string",
 			"defaultValue": "fwsys4containerid"
 		},
+		"HttpServer1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
 		"RestService1Systeminfo_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/systems/?datasource=tranquility"
@@ -102,6 +130,10 @@
 		"UniverseBloodlines_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/bloodlines/?datasource=tranquility&language=en"
+		},
+		"UniverseRegions_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/incursions/?datasource=tranquility"
 		},
 		"UniverseSystemJumps_properties_typeProperties_url": {
 			"type": "string",
@@ -163,9 +195,9 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
 		},
-		"UniverseRegions_properties_typeProperties_url": {
+		"HttpServer2_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://esi.evetech.net/latest/incursions/?datasource=tranquility"
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		},
 		"containerUri": {
 			"type": "string",
@@ -196,6 +228,12 @@
 					},
 					"CosmosDb1_connectionString": {
 						"value": "[parameters('CosmosDb1_connectionString')]"
+					},
+					"CosmosDb2_connectionString": {
+						"value": "[parameters('CosmosDb2_connectionString')]"
+					},
+					"CosmosDb3_connectionString": {
+						"value": "[parameters('CosmosDb3_connectionString')]"
 					},
 					"FWSystemsCosmosDbMongoDbApi1_connectionString": {
 						"value": "[parameters('FWSystemsCosmosDbMongoDbApi1_connectionString')]"
@@ -233,6 +271,9 @@
 					"FWSYS5RestService1_properties_typeProperties_url": {
 						"value": "[parameters('FWSYS5RestService1_properties_typeProperties_url')]"
 					},
+					"FWSystems_properties_typeProperties_url": {
+						"value": "[parameters('FWSystems_properties_typeProperties_url')]"
+					},
 					"FWSystems3RestService1_properties_typeProperties_url": {
 						"value": "[parameters('FWSystems3RestService1_properties_typeProperties_url')]"
 					},
@@ -242,20 +283,11 @@
 					"FWsys4RestService1_properties_typeProperties_url": {
 						"value": "[parameters('FWsys4RestService1_properties_typeProperties_url')]"
 					},
-					"RestService1Systeminfo_properties_typeProperties_url": {
-						"value": "[parameters('RestService1Systeminfo_properties_typeProperties_url')]"
+					"HttpServer1_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
 					},
-					"SystemKillsStorage_properties_typeProperties_serviceEndpoint": {
-						"value": "[parameters('SystemKillsStorage_properties_typeProperties_serviceEndpoint')]"
-					},
-					"TableUniverseBloodline_sasUri": {
-						"value": "[parameters('TableUniverseBloodline_sasUri')]"
-					},
-					"UniverseBloodlines_properties_typeProperties_url": {
-						"value": "[parameters('UniverseBloodlines_properties_typeProperties_url')]"
-					},
-					"UniverseSystemJumps_properties_typeProperties_url": {
-						"value": "[parameters('UniverseSystemJumps_properties_typeProperties_url')]"
+					"RestService1_properties_typeProperties_url": {
+						"value": "[parameters('RestService1_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -278,8 +310,29 @@
 					"UniverseSystemJumpsCosmosDb60_connectionString": {
 						"value": "[parameters('UniverseSystemJumpsCosmosDb60_connectionString')]"
 					},
+					"asISjson_connectionString": {
+						"value": "[parameters('asISjson_connectionString')]"
+					},
 					"fwsys4CosmosDb1_connectionString": {
 						"value": "[parameters('fwsys4CosmosDb1_connectionString')]"
+					},
+					"RestService1Systeminfo_properties_typeProperties_url": {
+						"value": "[parameters('RestService1Systeminfo_properties_typeProperties_url')]"
+					},
+					"SystemKillsStorage_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('SystemKillsStorage_properties_typeProperties_serviceEndpoint')]"
+					},
+					"TableUniverseBloodline_sasUri": {
+						"value": "[parameters('TableUniverseBloodline_sasUri')]"
+					},
+					"UniverseBloodlines_properties_typeProperties_url": {
+						"value": "[parameters('UniverseBloodlines_properties_typeProperties_url')]"
+					},
+					"UniverseRegions_properties_typeProperties_url": {
+						"value": "[parameters('UniverseRegions_properties_typeProperties_url')]"
+					},
+					"UniverseSystemJumps_properties_typeProperties_url": {
+						"value": "[parameters('UniverseSystemJumps_properties_typeProperties_url')]"
 					},
 					"UniverseSystemJumpsRestService60_properties_typeProperties_url": {
 						"value": "[parameters('UniverseSystemJumpsRestService60_properties_typeProperties_url')]"
@@ -311,8 +364,8 @@
 					"universeStructures_properties_typeProperties_url": {
 						"value": "[parameters('universeStructures_properties_typeProperties_url')]"
 					},
-					"UniverseRegions_properties_typeProperties_url": {
-						"value": "[parameters('UniverseRegions_properties_typeProperties_url')]"
+					"HttpServer2_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer2_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -333,6 +386,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"CosmosDb4_connectionString": {
+						"value": "[parameters('CosmosDb4_connectionString')]"
 					}
 				}
 			},
@@ -396,6 +452,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'EsiAdf_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "EsiAdf_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'EsiAdf_ArmTemplate_4')]"
 			]
 		}
 	]
