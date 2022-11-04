@@ -1,0 +1,14 @@
+{
+	"name": "FtpServer1",
+	"properties": {
+		"annotations": [],
+		"type": "FtpServer",
+		"typeProperties": {
+			"host": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility",
+			"port": "443",
+			"enableSsl": true,
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
