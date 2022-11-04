@@ -148,6 +148,9 @@
 		},
 		"HttpServer2_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"FtpServer1_properties_typeProperties_host": {
+			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		}
 	}
 }

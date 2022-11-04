@@ -199,6 +199,10 @@
 			"type": "string",
 			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		},
+		"FtpServer1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -389,6 +393,9 @@
 					},
 					"CosmosDb4_connectionString": {
 						"value": "[parameters('CosmosDb4_connectionString')]"
+					},
+					"FtpServer1_properties_typeProperties_host": {
+						"value": "[parameters('FtpServer1_properties_typeProperties_host')]"
 					}
 				}
 			},
@@ -421,12 +428,6 @@
 					},
 					"fw7CosmosDb1_properties_typeProperties_database": {
 						"value": "[parameters('fw7CosmosDb1_properties_typeProperties_database')]"
-					},
-					"fw7aCosmosDb1_properties_typeProperties_accountEndpoint": {
-						"value": "[parameters('fw7aCosmosDb1_properties_typeProperties_accountEndpoint')]"
-					},
-					"fw7aCosmosDb1_properties_typeProperties_database": {
-						"value": "[parameters('fw7aCosmosDb1_properties_typeProperties_database')]"
 					}
 				}
 			},
@@ -447,6 +448,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"fw7aCosmosDb1_properties_typeProperties_accountEndpoint": {
+						"value": "[parameters('fw7aCosmosDb1_properties_typeProperties_accountEndpoint')]"
+					},
+					"fw7aCosmosDb1_properties_typeProperties_database": {
+						"value": "[parameters('fw7aCosmosDb1_properties_typeProperties_database')]"
 					}
 				}
 			},
