@@ -14,6 +14,9 @@
 		"CosmosDb3_connectionString": {
 			"value": ""
 		},
+		"CosmosDb4_connectionString": {
+			"value": ""
+		},
 		"FWSystemsCosmosDbMongoDbApi1_connectionString": {
 			"value": ""
 		},
@@ -29,7 +32,7 @@
 		"fwsys4CosmosDb1_connectionString": {
 			"value": ""
 		},
-		"CosmosDb4_connectionString": {
+		"fwsystablestor_connectionString": {
 			"value": ""
 		},
 		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
@@ -80,7 +83,13 @@
 		"FWsys55CosmosDb1_properties_typeProperties_database": {
 			"value": "fwsys4containerid"
 		},
+		"FtpServer1_properties_typeProperties_host": {
+			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
 		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
+		},
+		"HttpServer2_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		},
 		"RestService1_properties_typeProperties_url": {
@@ -145,12 +154,6 @@
 		},
 		"universeStructures_properties_typeProperties_url": {
 			"value": "https://esi.evetech.net/latest/universe/structures/?datasource=tranquility"
-		},
-		"HttpServer2_properties_typeProperties_url": {
-			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
-		},
-		"FtpServer1_properties_typeProperties_host": {
-			"value": "https://esi.evetech.net/latest/fw/systems/?datasource=tranquility"
 		}
 	}
 }
